@@ -3,9 +3,6 @@ import { Section } from './Section';
 import { Button } from './Button';
 import { CheckCircle, X, Loader2, AlertCircle, Search, Video, PenTool, ChevronDown } from 'lucide-react';
 
-// Focus Context Logic
-// We pass focus state down to inputs
-
 // Input Component
 interface FormInputProps {
   label: string;
@@ -15,12 +12,12 @@ interface FormInputProps {
   autoComplete?: string;
   placeholder: string;
   value: string;
-  error: string;
-  valid: boolean;
+  error?: string;
+  valid?: boolean;
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
   onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-  onFocus: (name: string) => void; // Added onFocus prop
-  isFocused: boolean; // Added isFocused prop
+  onFocus: (name: string) => void;
+  isFocused: boolean;
   className?: string;
   isLoading?: boolean;
   required?: boolean;
@@ -46,7 +43,7 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div 
-        className={`group relative w-full transition-all duration-500 ${isFocused ? 'opacity-100 scale-[1.01]' : 'opacity-40 grayscale-[0.5]'}`}
+        className={`group relative w-full transition-all duration-500 ${isFocused ? 'opacity-100 scale-[1.01]' : 'opacity-80'}`}
     >
       <label className={`block text-sm font-bold mb-2 transition-colors duration-300 flex items-center justify-between ${error ? 'text-red-500' : 'text-gray-500 group-focus-within:text-navy-900'}`}>
         <span className="flex items-center gap-2">
@@ -108,7 +105,7 @@ const FormSelect: React.FC<FormSelectProps> = ({
     required = true
 }) => {
     return (
-        <div className={`group relative w-full transition-all duration-500 ${isFocused ? 'opacity-100 scale-[1.01]' : 'opacity-40 grayscale-[0.5]'}`}>
+        <div className={`group relative w-full transition-all duration-500 ${isFocused ? 'opacity-100 scale-[1.01]' : 'opacity-80'}`}>
             <label className={`block text-sm font-bold mb-2 transition-colors duration-300 flex items-center justify-between ${error ? 'text-red-500' : 'text-gray-500 group-focus-within:text-navy-900'}`}>
                 <span className="flex items-center gap-2">
                     {label} {required && <span className="text-red-500 text-xs">*</span>}
@@ -157,7 +154,7 @@ const FormTextArea: React.FC<FormInputProps> = ({
     required = false
 }) => {
     return (
-        <div className={`group relative w-full transition-all duration-500 ${isFocused ? 'opacity-100 scale-[1.01]' : 'opacity-40 grayscale-[0.5]'}`}>
+        <div className={`group relative w-full transition-all duration-500 ${isFocused ? 'opacity-100 scale-[1.01]' : 'opacity-80'}`}>
             <label className="block text-sm font-bold mb-2 text-gray-500 group-focus-within:text-navy-900 transition-colors duration-300">
                 {label} {!required && <span className="text-gray-300 text-xs ml-1">(任意)</span>}
             </label>
@@ -178,37 +175,24 @@ const FormTextArea: React.FC<FormInputProps> = ({
     );
 }
 
-
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
     company: '',
     industry: '', 
     name: '',
     email: '',
+    phone: '',
     zip: '', 
     address: '', 
-    date1: '', // Changed from date to date1
-    date2: '', // Added
-    date3: '', // Added
-    purpose: [] as string[],
+    date1: '', 
+    date2: '', 
+    date3: '', 
     message: ''
   });
 
-  const [touched, setTouched] = useState({
-    company: false,
-    industry: false,
-    name: false,
-    email: false,
-    zip: false,
-    address: false,
-    date1: false,
-    date2: false,
-    date3: false
-  });
-
-  // Track the currently focused field for "Spotlight" mode
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [focusedField, setFocusedField] = useState<string | null>(null);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAddressLoading, setIsAddressLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -225,7 +209,48 @@ export const ContactForm: React.FC = () => {
       "その他"
   ];
 
-  // Address Search Logic
+  const validate = (name: string, value: string) => {
+      let error = "";
+      if (name === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          error = "正しいメールアドレスを入力してください";
+      }
+      if (name === "phone" && value && !/^[0-9-]{10,13}$/.test(value)) {
+          error = "電話番号を正しく入力してください";
+      }
+      if (name === "zip" && value && !/^\d{7}$/.test(value.replace(/-/g, ''))) {
+          error = "郵便番号は7桁で入力してください";
+      }
+      if (!value && ["company", "industry", "name", "email", "phone"].includes(name)) {
+          error = "必須項目です";
+      }
+      return error;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Auto-search address on zip change
+    if (name === 'zip' && value.replace(/-/g, '').length === 7) {
+        searchAddress(value);
+    }
+
+    if (touched[name]) {
+        setErrors(prev => ({ ...prev, [name]: validate(name, value) }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    setErrors(prev => ({ ...prev, [name]: validate(name, value) }));
+    setFocusedField(null);
+  };
+
+  const handleFocus = (name: string) => {
+    setFocusedField(name);
+  };
+
   const searchAddress = async (inputZip: string) => {
     const zip = inputZip
       .replace(/[０-９]/g, (s) => String.fromCharCode(s.charCodeAt(0) - 0xFEE0))
@@ -246,7 +271,264 @@ export const ContactForm: React.FC = () => {
           ...prev,
           address: fullAddress,
         }));
-        setTouched(prev => ({ ...prev, address: true }));
+        setErrors(prev => ({ ...prev, address: "" })); // Clear address error if any
+      } else {
+        setErrors(prev => ({ ...prev, zip: "住所が見つかりませんでした" }));
       }
     } catch (error) {
-      console.error('Error fetching address:',
+      console.error('Error fetching address:', error);
+      setErrors(prev => ({ ...prev, zip: "住所検索に失敗しました" }));
+    } finally {
+      setIsAddressLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate all fields
+    const newErrors: Record<string, string> = {};
+    Object.keys(formData).forEach(key => {
+        const error = validate(key, (formData as any)[key]);
+        if (error) newErrors[key] = error;
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+        setErrors(newErrors);
+        setTouched(Object.keys(formData).reduce((acc, key) => ({...acc, [key]: true}), {}));
+        const firstErrorField = document.querySelector(`[name="${Object.keys(newErrors)[0]}"]`);
+        firstErrorField?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Simulate API Call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    setIsSubmitting(false);
+    setShowModal(true);
+    setFormData({
+        company: '', industry: '', name: '', email: '', phone: '', zip: '', address: '', date1: '', date2: '', date3: '', message: ''
+    });
+    setTouched({});
+  };
+
+  return (
+    <Section id="contact" className="bg-white relative">
+       {/* Background Decoration */}
+       <div className="hidden md:block absolute top-0 right-10 h-full writing-vertical-rl text-[120px] font-serif font-bold text-gray-100 select-none pointer-events-none z-0">
+         お問い合わせ
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-serif font-bold text-navy-900 mb-4">お問い合わせ・空き日程確認</h2>
+          <p className="text-gray-600 leading-relaxed">
+             毎月5社限定のため、まずは日程の確保をお願いいたします。<br/>
+             無理な営業は一切いたしませんので、ご安心ください。
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-12 bg-white md:p-12">
+            {/* Group 1: Basic Info */}
+            <div className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <FormInput 
+                        label="会社名" 
+                        name="company" 
+                        placeholder="株式会社〇〇" 
+                        value={formData.company} 
+                        onChange={handleChange} 
+                        onBlur={handleBlur}
+                        onFocus={handleFocus}
+                        isFocused={focusedField === 'company'}
+                        error={errors.company}
+                        valid={touched.company && !errors.company}
+                    />
+                    <FormSelect
+                        label="業種"
+                        name="industry"
+                        value={formData.industry}
+                        options={industryOptions}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        onFocus={handleFocus}
+                        isFocused={focusedField === 'industry'}
+                        error={errors.industry}
+                        valid={touched.industry && !errors.industry}
+                    />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <FormInput 
+                        label="担当者名" 
+                        name="name" 
+                        placeholder="山田 太郎" 
+                        value={formData.name} 
+                        onChange={handleChange} 
+                        onBlur={handleBlur}
+                        onFocus={handleFocus}
+                        isFocused={focusedField === 'name'}
+                        error={errors.name}
+                        valid={touched.name && !errors.name}
+                    />
+                     <FormInput 
+                        label="電話番号" 
+                        name="phone" 
+                        type="tel"
+                        inputMode="tel"
+                        placeholder="090-1234-5678" 
+                        value={formData.phone} 
+                        onChange={handleChange} 
+                        onBlur={handleBlur}
+                        onFocus={handleFocus}
+                        isFocused={focusedField === 'phone'}
+                        error={errors.phone}
+                        valid={touched.phone && !errors.phone}
+                    />
+                </div>
+
+                <FormInput 
+                    label="メールアドレス" 
+                    name="email" 
+                    type="email"
+                    inputMode="email"
+                    placeholder="example@company.co.jp" 
+                    value={formData.email} 
+                    onChange={handleChange} 
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    isFocused={focusedField === 'email'}
+                    error={errors.email}
+                    valid={touched.email && !errors.email}
+                />
+            </div>
+
+            {/* Group 2: Address (Auto Search) */}
+            <div className="space-y-8 border-t border-gray-100 pt-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                     <div className="md:col-span-1">
+                        <FormInput 
+                            label="郵便番号" 
+                            name="zip" 
+                            inputMode="numeric"
+                            placeholder="123-4567" 
+                            value={formData.zip} 
+                            onChange={handleChange} 
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                            isFocused={focusedField === 'zip'}
+                            error={errors.zip}
+                            valid={touched.zip && !errors.zip}
+                            isLoading={isAddressLoading}
+                            required={false}
+                        />
+                     </div>
+                     <div className="md:col-span-2">
+                        <FormInput 
+                            label="住所" 
+                            name="address" 
+                            placeholder="東京都..." 
+                            value={formData.address} 
+                            onChange={handleChange} 
+                            onBlur={handleBlur}
+                            onFocus={handleFocus}
+                            isFocused={focusedField === 'address'}
+                            error={errors.address}
+                            valid={touched.address && !errors.address}
+                            required={false}
+                        />
+                     </div>
+                </div>
+            </div>
+
+            {/* Group 3: Dates */}
+            <div className="space-y-6 border-t border-gray-100 pt-8">
+                <label className="block text-sm font-bold text-navy-900 mb-2">
+                    撮影希望日候補 <span className="text-gray-400 text-xs ml-2 font-normal">※3つほど挙げていただけるとスムーズです</span>
+                </label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <input 
+                        type="datetime-local" 
+                        name="date1"
+                        value={formData.date1}
+                        onChange={handleChange}
+                        className="w-full bg-paper border-b-2 border-gray-300 focus:border-navy-900 py-3 px-2 focus:outline-none transition-colors"
+                    />
+                    <input 
+                        type="datetime-local" 
+                        name="date2"
+                        value={formData.date2}
+                        onChange={handleChange}
+                        className="w-full bg-paper border-b-2 border-gray-300 focus:border-navy-900 py-3 px-2 focus:outline-none transition-colors"
+                    />
+                    <input 
+                        type="datetime-local" 
+                        name="date3"
+                        value={formData.date3}
+                        onChange={handleChange}
+                        className="w-full bg-paper border-b-2 border-gray-300 focus:border-navy-900 py-3 px-2 focus:outline-none transition-colors"
+                    />
+                </div>
+            </div>
+
+            {/* Group 4: Message */}
+            <div className="border-t border-gray-100 pt-8">
+                <FormTextArea
+                    label="その他・ご質問など"
+                    name="message"
+                    placeholder="ご自由にご記入ください"
+                    value={formData.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    isFocused={focusedField === 'message'}
+                />
+            </div>
+            
+            <div className="pt-8 text-center">
+                <Button 
+                    type="submit" 
+                    variant="rec" 
+                    className="w-full md:w-1/2 py-5 text-lg shadow-xl"
+                    disabled={isSubmitting}
+                >
+                    {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                            <Loader2 className="animate-spin" /> 送信中...
+                        </span>
+                    ) : (
+                        "空き日程を確認する (送信)"
+                    )}
+                </Button>
+                <p className="text-xs text-gray-500 mt-4">
+                    ※ 送信時点では予約は確定しません。<br/>
+                    担当者より24時間以内にご連絡いたします。
+                </p>
+            </div>
+        </form>
+      </div>
+
+      {/* Success Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy-900/80 backdrop-blur-sm animate-focus-in">
+            <div className="bg-white p-8 md:p-12 max-w-lg w-full shadow-2xl relative text-center border-t-4 border-persimmon">
+                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
+                    <CheckCircle size={40} />
+                </div>
+                <h3 className="text-2xl font-serif font-bold text-navy-900 mb-4">送信完了しました</h3>
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                    お問い合わせありがとうございます。<br/>
+                    ご入力いただいた内容を確認の上、<br/>
+                    <span className="font-bold text-navy-900">24時間以内</span>に担当者よりご連絡いたします。
+                </p>
+                <Button onClick={() => setShowModal(false)} variant="primary" className="w-full">
+                    閉じる
+                </Button>
+            </div>
+        </div>
+      )}
+    </Section>
+  );
+};
