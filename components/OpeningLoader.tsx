@@ -43,7 +43,7 @@ export const OpeningLoader: React.FC = () => {
              <img 
                src="https://github.com/ryoto2323/recloop-youtube/blob/main/uragawalogo.png?raw=true" 
                alt="URAGAWA" 
-               className="w-[180px] md:w-[200px] h-auto object-contain"
+               className="w-[180px] md:w-[200px] h-auto object-contain brightness-0 invert"
              />
          </div>
          

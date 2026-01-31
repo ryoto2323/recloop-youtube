@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
             className="cursor-pointer block transition-opacity hover:opacity-80"
           >
             <img 
-              src="https://github.com/ryoto2323/recloop-youtube/blob/main/uragawalogo.png?raw=true&v=small" 
+              src="https://github.com/ryoto2323/recloop-youtube/blob/main/uragawalogo.png?raw=true" 
               alt="URAGAWA 裏側1日密着ドキュメンタリー" 
               className="h-[32px] md:h-[42px] w-auto object-contain p-0 m-0"
             />
