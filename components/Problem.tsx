@@ -13,15 +13,15 @@ export const Problem: React.FC = () => {
 
       <div className="w-full max-w-4xl mx-auto relative z-20 px-6">
         
-        {/* Changed to text-left on mobile for readability */}
-        <div className="text-left md:text-center space-y-16 md:space-y-24">
+        {/* Changed to text-center for both mobile and desktop for better balance */}
+        <div className="text-center space-y-16 md:space-y-24">
           <div className="space-y-8 md:space-y-10">
-            <h2 className="text-lg md:text-3xl font-serif text-navy-900 font-medium leading-loose tracking-wide">
+            <h2 className="text-lg md:text-3xl font-serif text-navy-900 font-medium leading-loose tracking-wide break-keep">
               多くの企業は、ちゃんとやっています。<br/>
               <br/>
               広告を出す。求人も出す。営業もかける。<br/>
               <br/>
-              それでも中々成果が伸びないのは、努力不足ではありません。
+              それでも中々成果が伸びないのは、<br className="md:hidden" />努力不足ではありません。
             </h2>
           </div>
 
@@ -37,38 +37,38 @@ export const Problem: React.FC = () => {
                     <span className="absolute top-0 left-0 -z-10 w-full h-full text-blue-600 opacity-40 animate-glitch translate-x-[-2px] animation-delay-100">「中身が見えていない」</span>
                 </span>
                 
-                <h3 className="text-xl md:text-3xl font-serif font-bold text-navy-900 tracking-wide leading-relaxed mt-4 text-center">
+                <h3 className="text-xl md:text-3xl font-serif font-bold text-navy-900 tracking-wide leading-relaxed mt-4 text-center break-keep">
                   中身を見せる戦略を<br className="md:hidden"/>取り入れてないからです。
                 </h3>
              </div>
           </div>
 
-          <div className="max-w-3xl mx-auto text-navy-900 text-sm md:text-lg text-left md:text-center font-medium leading-loose tracking-wide">
+          <div className="max-w-3xl mx-auto text-navy-900 text-sm md:text-lg text-center font-medium leading-loose tracking-wide break-keep">
             <p className="mb-16 md:mb-24 opacity-90">
               Webサイトが綺麗でも、パンフレットが立派でも、<br className="hidden md:block"/>
               本当に知りたいのはそこじゃない。<br className="hidden md:block"/>
               <br className="hidden md:block"/>
-              「どんな人が、どんな想いで、どんな空気の中で働いているのか」<br className="hidden md:block"/>
+              「どんな人が、どんな想いで、<br className="md:hidden"/>どんな空気の中で働いているのか」<br className="hidden md:block"/>
               この現場の手触りが見えない限り、<br className="hidden md:block"/>
-              いまの求職者も、顧客も心は動きにくい時代です。
+              いまの求職者も、顧客も<br className="md:hidden"/>心は動きにくい時代です。
             </p>
             
             <div className="bg-white p-8 md:p-14 shadow-xl border border-gray-100 relative overflow-hidden text-center transform rotate-1">
                 {/* Tape effect */}
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-100/50 rotate-1 shadow-sm border-l border-r border-gray-200"></div>
                 
-                <p className="font-bold text-gray-600 text-sm md:text-base mb-6 leading-relaxed">
+                <p className="font-bold text-gray-600 text-sm md:text-base mb-6 leading-relaxed break-keep">
                   だから、不信感や迷いを一気に消す<br className="md:hidden" />
                   最短手段はひとつ。
                 </p>
                 <div className="relative z-10 space-y-4">
-                    <p className="text-lg md:text-2xl font-bold text-navy-900">
+                    <p className="text-lg md:text-2xl font-bold text-navy-900 break-keep">
                     作り込んだPRではなく、
                     </p>
                     <p className="font-hand text-2xl md:text-5xl text-navy-900 border-b-2 border-red-600 inline-block pb-2 mb-2 whitespace-nowrap">
                     “現場のリアル”を見せること。
                     </p>
-                    <p className="text-base md:text-lg text-navy-900 font-bold border-t border-gray-200 pt-6 mt-4 inline-block w-full max-w-lg leading-relaxed">
+                    <p className="text-base md:text-lg text-navy-900 font-bold border-t border-gray-200 pt-6 mt-4 inline-block w-full max-w-lg leading-relaxed break-keep">
                     それが、認知・集客・採用・取引先を<br className="md:hidden" />
                     まとめて動かします。
                     </p>

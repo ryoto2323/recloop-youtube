@@ -33,24 +33,24 @@ export const Solution: React.FC = () => {
           
           {/* Text Side */}
           <div className="flex-1 flex flex-col justify-center space-y-8 md:space-y-10 order-2 md:order-1 w-full">
-            <div className="border-l-4 border-navy-900 pl-4 md:pl-6 relative">
-              <Sparkles className="absolute -top-6 -left-2 w-6 h-6 text-persimmon animate-pulse" />
-              <h2 className="text-2xl md:text-4xl font-serif font-bold text-navy-900 mb-4 md:mb-6 tracking-wide leading-tight">
+            <div className="border-l-4 border-navy-900 pl-4 md:pl-6 relative text-center md:text-left">
+              <Sparkles className="absolute -top-6 -left-2 md:-left-2 w-6 h-6 text-persimmon animate-pulse mx-auto md:mx-0 left-0 right-0 md:right-auto" />
+              <h2 className="text-2xl md:text-4xl font-serif font-bold text-navy-900 mb-4 md:mb-6 tracking-wide leading-tight break-keep">
                 御社の1日を、<br className="hidden md:block"/>そのまま。
               </h2>
-              <p className="text-base md:text-xl text-navy-900/80 font-medium tracking-wide leading-relaxed">
+              <p className="text-base md:text-xl text-navy-900/80 font-medium tracking-wide leading-relaxed break-keep">
                 裏側1日密着ドキュメンタリーが<br/>
                 最強の会社紹介になる。
               </p>
             </div>
             
-            <div className="space-y-6 text-gray-700 leading-loose text-sm md:text-base font-medium">
+            <div className="space-y-6 text-gray-700 leading-loose text-sm md:text-base font-medium break-keep text-center md:text-left">
               <p>
-                「仕事のリアル」「プロセス」「本音」「トップの想い」。<br/>
-                これらを1日密着で撮影し、一本のストーリーに仕立てます。
+                「仕事のリアル」「プロセス」「本音」「トップの想い」。<br className="hidden md:block"/>
+                これらを1日密着で撮影し、<br className="md:hidden"/>一本のストーリーに仕立てます。
               </p>
-              <div className="bg-paper p-5 md:p-6 rounded-sm border-l-2 border-persimmon shadow-lg transform transition-transform hover:scale-105 duration-300">
-                  <p className="mb-2">
+              <div className="bg-paper p-5 md:p-6 rounded-sm border-l-2 border-persimmon shadow-lg transform transition-transform hover:scale-105 duration-300 text-left">
+                  <p className="mb-2 text-center md:text-left">
                       ご用意いただくのは<strong className="text-navy-900 text-base md:text-lg mx-1 font-hand">「いつもの現場」</strong>だけ。
                   </p>
                   <p className="text-xs md:text-sm leading-loose">
@@ -99,12 +99,12 @@ export const Solution: React.FC = () => {
 
         </div>
         
-        <div className="mt-16 md:mt-24 text-left md:text-center max-w-3xl mx-auto border-t border-gray-100 pt-8 md:pt-12">
-          <p className="font-serif text-lg md:text-2xl text-navy-900 font-medium animate-focus-in delay-500 text-center">
+        <div className="mt-16 md:mt-24 text-center max-w-3xl mx-auto border-t border-gray-100 pt-8 md:pt-12">
+          <p className="font-serif text-lg md:text-2xl text-navy-900 font-medium animate-focus-in delay-500 text-center break-keep">
             「何も特別なことはしていない」
           </p>
-          <p className="text-sm md:text-lg text-gray-700 mt-4 leading-loose tracking-wide">
-              そう思われる日常の中にこそ、第三者が本当に見たい<br/>
+          <p className="text-sm md:text-lg text-gray-700 mt-4 leading-loose tracking-wide break-keep text-center">
+              そう思われる日常の中にこそ、<br className="md:hidden"/>第三者が本当に見たい<br className="hidden md:block"/>
               <strong className="font-hand text-xl md:text-2xl text-navy-900 mx-1">信頼の根拠</strong>が詰まっています。
           </p>
         </div>

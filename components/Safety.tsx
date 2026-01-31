@@ -13,7 +13,7 @@ export const Safety: React.FC = () => {
           <div className="inline-block border-2 border-red-800/50 text-red-800/50 px-3 py-1 text-xs font-bold tracking-[0.2em] mb-4 uppercase rotate-[-2deg]">
              Top Secret
           </div>
-          <h2 className="text-2xl md:text-4xl font-serif font-bold text-navy-900 leading-tight">
+          <h2 className="text-2xl md:text-4xl font-serif font-bold text-navy-900 leading-tight break-keep">
             公開が不安な方へ。<br/>
             <span className="relative inline-block">
                 <span className="relative z-10">「完全承認制」</span>
@@ -35,7 +35,7 @@ export const Safety: React.FC = () => {
                 <span className="w-6 h-6 bg-navy-900 text-white flex items-center justify-center text-xs rounded-full">1</span>
                 完全承認制
              </h3>
-             <p className="text-sm text-gray-700 leading-relaxed font-medium">
+             <p className="text-sm text-gray-700 leading-relaxed font-medium break-keep">
                 お客様の
                 <span className="relative inline-block group-hover:text-red-600 transition-colors mx-1 font-bold border-b border-gray-400 border-dashed">
                    校了 (OK)
@@ -58,7 +58,7 @@ export const Safety: React.FC = () => {
                 <span className="w-6 h-6 bg-navy-900 text-white flex items-center justify-center text-xs rounded-full">2</span>
                 映せないものは撮らない
              </h3>
-             <p className="text-sm text-gray-700 leading-relaxed font-medium">
+             <p className="text-sm text-gray-700 leading-relaxed font-medium break-keep">
                 事前に
                 <span className="relative inline-block mx-1 align-bottom group cursor-help">
                    <span className="absolute inset-0 bg-navy-900 group-hover:w-0 transition-all duration-300 ease-out z-10"></span>
@@ -78,7 +78,7 @@ export const Safety: React.FC = () => {
                 <span className="w-6 h-6 bg-navy-900 text-white flex items-center justify-center text-xs rounded-full">3</span>
                 モザイク処理対応
              </h3>
-             <p className="text-sm text-gray-700 leading-relaxed font-medium">
+             <p className="text-sm text-gray-700 leading-relaxed font-medium break-keep">
                 万が一の映り込みも、編集で<br/>
                 <span className="blur-[2px] group-hover:blur-0 transition-all duration-300 bg-gray-200 px-1">ボカシ処理</span>
                 や音声カットにて<br/>
@@ -106,7 +106,7 @@ export const Safety: React.FC = () => {
                  <Lock className="w-5 h-5 text-persimmon" />
                  <h3 className="font-serif text-xl md:text-2xl font-medium tracking-wide">権利・二次利用について</h3>
               </div>
-              <p className="text-gray-300 text-sm md:text-base leading-loose font-serif">
+              <p className="text-gray-300 text-sm md:text-base leading-loose font-serif break-keep">
                 納品データは<span className="text-white border-b border-persimmon mx-1 font-bold">「無期限・無制限」</span>で二次利用可能です。<br className="hidden md:block"/>
                 自社サイト、SNS、広告、採用媒体などに自由にお使いください。
               </p>

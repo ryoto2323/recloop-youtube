@@ -33,8 +33,8 @@ export const Mission: React.FC = () => {
          効果と特徴
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 relative z-10">
-        <h2 className="text-2xl md:text-5xl font-serif font-bold text-navy-900 leading-tight tracking-tight">
+      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 relative z-10 text-center md:text-left">
+        <h2 className="text-2xl md:text-5xl font-serif font-bold text-navy-900 leading-tight tracking-tight break-keep">
           透明性の可視化で企業の<br className="md:hidden"/>
           「伝わらない」を解決します。
         </h2>
@@ -56,10 +56,10 @@ export const Mission: React.FC = () => {
             </div>
             
             <div>
-              <h3 className="text-xl md:text-2xl font-serif font-bold mb-3 md:mb-6 text-navy-900 group-hover:text-white transition-colors duration-500 tracking-tight">
+              <h3 className="text-xl md:text-2xl font-serif font-bold mb-3 md:mb-6 text-navy-900 group-hover:text-white transition-colors duration-500 tracking-tight text-center md:text-left">
                 {val.title}
               </h3>
-              <p className="text-sm md:text-base text-gray-700 leading-loose group-hover:text-gray-200 transition-colors duration-500">
+              <p className="text-sm md:text-base text-gray-700 leading-loose group-hover:text-gray-200 transition-colors duration-500 break-keep text-center md:text-left">
                 {val.desc}
               </p>
             </div>
