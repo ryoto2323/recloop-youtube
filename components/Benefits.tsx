@@ -34,8 +34,9 @@ export const Benefits: React.FC = () => {
       <div className="relative z-10">
         <div className="text-center mb-16">
             <h2 className="text-xl md:text-3xl font-serif font-bold text-navy-900 leading-relaxed mb-6">
-            動画は「消費」ではなく、<br className="hidden md:block"/>
-            <span className="text-persimmon border-b-2 border-persimmon pb-1">「投資」</span>です。
+                <span className="inline-block">
+                    動画は「消費」ではなく、<span className="text-persimmon border-b-2 border-persimmon pb-1">「投資」</span>です。
+                </span>
             </h2>
             <p className="text-gray-700 font-medium text-sm md:text-base">
                 一度作れば、あなたの代わりに24時間365日営業し続けます。

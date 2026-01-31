@@ -512,7 +512,7 @@ export const ContactForm: React.FC = () => {
 
       {/* Success Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy-900/80 backdrop-blur-sm animate-focus-in">
+        <div className="fixed inset-0 z-[100] h-[100dvh] w-screen flex items-center justify-center p-4 bg-navy-900/80 backdrop-blur-sm animate-focus-in">
             <div className="bg-white p-8 md:p-12 max-w-lg w-full shadow-2xl relative text-center border-t-4 border-persimmon">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
                     <CheckCircle size={40} />

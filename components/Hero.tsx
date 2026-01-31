@@ -131,7 +131,7 @@ export const Hero: React.FC = () => {
         <div className="relative z-10 w-full h-full p-6 pt-28 md:p-20 flex flex-col justify-center items-center text-white pointer-events-none">
             
             {/* Unified Horizontal Layout for All Devices */}
-            <div className="w-full max-w-5xl px-4 text-center pointer-events-auto flex flex-col items-center justify-center gap-8 md:gap-12 py-10 animate-focus-in">
+            <div className="w-full max-w-5xl px-6 text-center pointer-events-auto flex flex-col items-center justify-center gap-8 md:gap-12 py-10 animate-focus-in">
                 {/* Sub Copy: Adjusted size for PC elegance */}
                 <p className="text-white font-serif text-[15px] md:text-lg lg:text-xl tracking-[0.12em] border-b border-white/60 pb-3 md:pb-5 drop-shadow-lg whitespace-nowrap">
                     飾られたPR動画は<span className="text-[1.3em] font-medium ml-1">もう誰も信じない</span>

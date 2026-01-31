@@ -12,7 +12,7 @@ export const Section: React.FC<SectionProps> = ({
   id, 
   className = '', 
   children, 
-  fullWidth = false,
+  fullWidth = false, 
   grid = true 
 }) => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -102,7 +102,7 @@ export const Section: React.FC<SectionProps> = ({
           {children}
         </div>
       ) : (
-        <div className={`max-w-7xl mx-auto px-5 md:px-12 relative z-10 transition-opacity duration-1000 ${isVisible ? 'animate-blur-reveal' : 'opacity-0'}`}>
+        <div className={`max-w-7xl mx-auto px-6 md:px-12 relative z-10 transition-opacity duration-1000 ${isVisible ? 'animate-blur-reveal' : 'opacity-0'}`}>
           {children}
         </div>
       )}

@@ -10,8 +10,11 @@ export const Target: React.FC = () => {
         <div className="w-full md:w-1/2">
             <h2 className="text-3xl md:text-5xl font-serif font-bold leading-tight mb-8">
             どんな業種でも<br/>
-            <span className="text-persimmon font-medium italic text-4xl md:text-6xl">見たい裏側</span>
-            <span className="pl-3">があります。</span>
+            {/* Grouped for correct mobile wrapping */}
+            <span className="inline-block mt-2">
+                <span className="text-persimmon font-medium italic text-4xl md:text-6xl">見たい裏側</span>
+                <span className="pl-3">があります。</span>
+            </span>
             </h2>
             
             {/* Industry List - Clean Architectural Style */}
