@@ -10,7 +10,6 @@ export const Target: React.FC = () => {
         <div className="w-full md:w-1/2">
             <h2 className="text-3xl md:text-5xl font-serif font-bold leading-tight mb-8 break-keep">
             どんな業種でも<br/>
-            {/* Grouped for correct mobile wrapping */}
             <span className="inline-block mt-2">
                 <span className="text-persimmon font-medium italic text-4xl md:text-6xl">見たい裏側</span>
                 <span className="pl-3">があります。</span>
@@ -33,15 +32,15 @@ export const Target: React.FC = () => {
            <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-800 hidden md:block"></div>
            <div className="md:pl-12 pt-4">
                <p className="text-gray-400 font-serif text-base md:text-lg mb-8 leading-loose break-keep">
-                 現場のリアルには必ずドラマがあり<br className="hidden md:block"/>
+                 現場のリアルには必ずドラマがあり<br />
                  見たい裏側があります。
                </p>
                
                {/* Handwritten "Truth" Statement */}
-               <div className="relative inline-block text-left md:text-left">
-                   <p className="text-white leading-tight">
+               <div className="relative inline-block text-center md:text-left">
+                   <p className="text-white leading-tight break-keep">
                      <span className="font-hand text-3xl md:text-5xl">「うちは地味だから…」</span><br/>
-                     <span className="font-serif font-bold text-2xl md:text-4xl mt-3 inline-block">ほど、信用に直結して強いです。</span>
+                     <span className="font-serif font-bold text-2xl md:text-4xl mt-3 inline-block">ほど信用に直結して強いです。</span>
                    </p>
                    {/* Underline accent */}
                    <div className="w-full h-px bg-gradient-to-r from-persimmon to-transparent mt-4 opacity-70"></div>

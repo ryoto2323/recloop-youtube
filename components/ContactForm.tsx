@@ -323,10 +323,12 @@ export const ContactForm: React.FC = () => {
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-serif font-bold text-navy-900 mb-4">お問い合わせ・空き日程確認</h2>
-          <p className="text-gray-600 leading-relaxed">
-             毎月5社限定のため、まずは日程の確保をお願いいたします。<br/>
-             無理な営業は一切いたしませんので、ご安心ください。
+          <h2 className="text-2xl md:text-3xl font-serif font-bold text-navy-900 mb-4 break-keep">お問い合わせ・空き日程確認</h2>
+          <p className="text-gray-600 leading-relaxed break-keep">
+             毎月5社限定のため、まずは日程の確保を<br />
+             お願いいたします。<br />
+             無理な営業は一切いたしませんので<br />
+             ご安心ください。
           </p>
         </div>
 

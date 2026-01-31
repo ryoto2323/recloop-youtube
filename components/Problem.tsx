@@ -47,10 +47,13 @@ export const Problem: React.FC = () => {
             <p className="mb-16 md:mb-24 opacity-90">
               Webサイトが綺麗でも、パンフレットが立派でも、<br className="hidden md:block"/>
               本当に知りたいのはそこじゃない。<br className="hidden md:block"/>
-              <br className="hidden md:block"/>
-              「どんな人が、どんな想いで、<br className="md:hidden"/>どんな空気の中で働いているのか」<br className="hidden md:block"/>
-              この現場の手触りが見えない限り、<br className="hidden md:block"/>
-              いまの求職者も、顧客も<br className="md:hidden"/>心は動きにくい時代です。
+              <br className="block md:hidden" />
+              <br className="block md:hidden" />
+              「どんな人が」「どんな想いで」<br />
+              「どんな感じで働いているのか」<br />
+              この現場の手触りが見えない限り<br />
+              いまの求職者も、顧客も<br />
+              心は動きにくい時代です。
             </p>
             
             <div className="bg-white p-8 md:p-14 shadow-xl border border-gray-100 relative overflow-hidden text-center transform rotate-1">

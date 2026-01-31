@@ -1,0 +1,10 @@
+<svg width="400" height="110" viewBox="0 0 400 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Top Text: URAGAWA -->
+  <text x="200" y="45" text-anchor="middle" font-family="'Noto Serif JP', serif" font-size="44" fill="#ffffff" letter-spacing="0.15em" stroke="#ffffff" stroke-width="0.5" style="font-feature-settings: 'palt';">URAGAWA</text>
+  
+  <!-- Divider Line -->
+  <line x1="20" y1="62" x2="380" y2="62" stroke="#9CA3AF" stroke-width="2"/>
+  
+  <!-- Bottom Text: Japanese -->
+  <text x="200" y="92" text-anchor="middle" font-family="'Noto Serif JP', serif" font-size="22" fill="#4B5563" letter-spacing="0.05em" font-weight="600" style="font-feature-settings: 'palt';">現場1日密着ドキュメンタリー</text>
+</svg>

@@ -110,7 +110,7 @@ export const Navbar: React.FC = () => {
             className="cursor-pointer block transition-opacity hover:opacity-80"
           >
             <img 
-              src="/uragawalogo.png" 
+              src="/uragawalogo.svg" 
               alt="URAGAWA 裏側1日密着ドキュメンタリー" 
               className="h-[32px] md:h-[42px] w-auto object-contain p-0 m-0 brightness-0 invert"
             />

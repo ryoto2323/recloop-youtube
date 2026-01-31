@@ -46,8 +46,10 @@ export const Solution: React.FC = () => {
             
             <div className="space-y-6 text-gray-700 leading-loose text-sm md:text-base font-medium break-keep text-center md:text-left">
               <p>
-                「仕事のリアル」「プロセス」「本音」「トップの想い」。<br className="hidden md:block"/>
-                これらを1日密着で撮影し、<br className="md:hidden"/>一本のストーリーに仕立てます。
+                「仕事のリアル」「プロセス」<br />
+                「本音」「トップの想い」<br />
+                これらを1日密着で撮影して<br />
+                一本のストーリーに仕立てます。
               </p>
               <div className="bg-paper p-5 md:p-6 rounded-sm border-l-2 border-persimmon shadow-lg transform transition-transform hover:scale-105 duration-300 text-left">
                   <p className="mb-2 text-center md:text-left">
@@ -104,8 +106,9 @@ export const Solution: React.FC = () => {
             「何も特別なことはしていない」
           </p>
           <p className="text-sm md:text-lg text-gray-700 mt-4 leading-loose tracking-wide break-keep text-center">
-              そう思われる日常の中にこそ、<br className="md:hidden"/>第三者が本当に見たい<br className="hidden md:block"/>
-              <strong className="font-hand text-xl md:text-2xl text-navy-900 mx-1">信頼の根拠</strong>が詰まっています。
+              そう思われる日常の中にこそ、<br />
+              第三者が本当に見たい信頼の根拠が<br />
+              詰まっています。
           </p>
         </div>
       </Section>
