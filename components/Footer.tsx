@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
           <img 
             src="https://github.com/ryoto2323/recloop-youtube/blob/main/uragawalogo.png?raw=true" 
             alt="URAGAWA 裏側1日密着ドキュメンタリー" 
-            className="h-[32px] w-auto object-contain mx-auto md:mx-0 opacity-80 hover:opacity-100 transition-opacity"
+            className="h-[32px] w-auto object-contain mx-auto md:mx-0 opacity-80 hover:opacity-100 transition-opacity brightness-0 invert"
           />
         </div>
         <div className="text-sm tracking-wider">
