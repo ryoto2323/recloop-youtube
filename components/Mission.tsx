@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Section } from './Section';
 import { Circle, Square, Triangle, Hexagon } from 'lucide-react';
 
@@ -27,30 +27,39 @@ export const Mission: React.FC = () => {
   ];
 
   return (
-    <Section className="bg-paper" fullWidth>
-      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20">
+    <Section id="mission" className="bg-paper relative" fullWidth>
+      {/* Vertical Rhythm Decoration */}
+      <div className="hidden md:block absolute top-0 right-10 h-full writing-vertical-rl text-[120px] font-serif font-bold text-gray-200/50 select-none pointer-events-none z-0">
+         効果と特徴
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 mb-12 md:mb-20 relative z-10">
         <h2 className="text-2xl md:text-5xl font-serif font-bold text-navy-900 leading-tight tracking-tight">
-          透明性の可視化で、<br className="hidden md:block"/>
-          企業の「伝わらない」を解決します。
+          透明性の可視化で企業の<br className="md:hidden"/>
+          「伝わらない」を解決します。
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 border-t border-b border-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 border-t border-gray-200 relative z-10">
         {values.map((val, idx) => (
           <div 
             key={idx} 
-            className="group relative border-b md:border-b-0 md:border-r border-gray-200 p-8 md:p-12 h-auto md:h-[30rem] flex flex-col justify-between transition-all duration-500 hover:bg-navy-900 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:z-10 cursor-default"
+            className="group relative border-b border-gray-200 md:border-b-0 md:border-r p-8 md:p-12 h-auto md:h-[30rem] flex flex-col justify-between transition-all duration-500 hover:bg-navy-900 hover:scale-[1.02] hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:z-10 cursor-default"
           >
-            <div className="text-navy-900 group-hover:text-white transition-colors duration-500 opacity-50 mb-6 md:mb-0">
-              {val.icon}
+            <div className="flex items-center justify-between md:block mb-4 md:mb-0">
+                <div className="text-navy-900 group-hover:text-white transition-colors duration-500 opacity-80">
+                {val.icon}
+                </div>
+                <span className="text-xs font-num font-bold text-gray-500 md:mb-4 block group-hover:text-gray-400 tracking-widest">
+                    0{idx + 1}
+                </span>
             </div>
             
             <div>
-              <span className="text-xs font-num font-bold text-gray-400 mb-2 md:mb-4 block group-hover:text-gray-500 tracking-widest">0{idx + 1}</span>
               <h3 className="text-xl md:text-2xl font-serif font-bold mb-3 md:mb-6 text-navy-900 group-hover:text-white transition-colors duration-500 tracking-tight">
                 {val.title}
               </h3>
-              <p className="text-sm md:text-base text-gray-600 leading-relaxed md:leading-loose group-hover:text-gray-300 transition-colors duration-500">
+              <p className="text-sm md:text-base text-gray-700 leading-loose group-hover:text-gray-200 transition-colors duration-500">
                 {val.desc}
               </p>
             </div>

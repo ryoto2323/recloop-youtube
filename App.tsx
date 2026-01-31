@@ -15,10 +15,14 @@ import { FAQ } from './components/FAQ';
 import { ContactForm } from './components/ContactForm';
 import { Footer } from './components/Footer';
 import { MobileStickyCTA } from './components/MobileStickyCTA';
+import { OpeningLoader } from './components/OpeningLoader';
+import { CustomCursor } from './components/CustomCursor';
 
 const App: React.FC = () => {
   return (
-    <div className="font-sans text-navy-900 bg-paper min-h-screen selection:bg-persimmon selection:text-white">
+    <div className="font-sans text-navy-900 bg-paper min-h-screen selection:bg-persimmon selection:text-white pb-24 md:pb-32">
+      <CustomCursor />
+      <OpeningLoader />
       <Navbar />
       <main>
         <Hero />

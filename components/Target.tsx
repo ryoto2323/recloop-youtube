@@ -9,8 +9,9 @@ export const Target: React.FC = () => {
         {/* Left: Heading */}
         <div className="w-full md:w-1/2">
             <h2 className="text-3xl md:text-5xl font-serif font-bold leading-tight mb-8">
-            どんな業種でも、<br className="hidden md:block"/>
-            <span className="text-persimmon font-medium italic">“見たい裏側”</span>があります。
+            どんな業種でも<br/>
+            <span className="text-persimmon font-medium italic text-4xl md:text-6xl">見たい裏側</span>
+            <span className="pl-3">があります。</span>
             </h2>
             
             {/* Industry List - Clean Architectural Style */}
@@ -29,15 +30,15 @@ export const Target: React.FC = () => {
            <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-800 hidden md:block"></div>
            <div className="md:pl-12 pt-4">
                <p className="text-gray-400 font-serif text-base md:text-lg mb-8 leading-loose">
-                 現場のリアルには必ずドラマがあり、<br className="hidden md:block"/>
+                 現場のリアルには必ずドラマがあり<br/>
                  見たい裏側があります。
                </p>
                
                {/* Handwritten "Truth" Statement */}
                <div className="relative inline-block">
-                   <p className="font-hand text-3xl md:text-5xl text-white leading-tight">
-                     「うちは地味だから…」ほど、<br className="hidden md:block"/>
-                     信用に直結して強いです。
+                   <p className="text-white leading-tight">
+                     <span className="font-hand text-3xl md:text-5xl">「うちは地味だから…」</span><br/>
+                     <span className="font-serif font-bold text-2xl md:text-4xl mt-3 inline-block">ほど、信用に直結して強いです。</span>
                    </p>
                    {/* Underline accent */}
                    <div className="w-full h-px bg-gradient-to-r from-persimmon to-transparent mt-4 opacity-70"></div>
