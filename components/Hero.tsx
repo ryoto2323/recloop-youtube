@@ -131,24 +131,24 @@ export const Hero: React.FC = () => {
         <div className="relative z-10 w-full h-full p-6 pt-28 md:p-20 flex flex-col justify-center items-center text-white pointer-events-none">
             
             {/* Unified Horizontal Layout for All Devices */}
-            <div className="w-full px-4 text-center pointer-events-auto flex flex-col items-center justify-center gap-8 md:gap-14 py-10 animate-focus-in">
-                {/* Sub Copy: 1 Line, Comfortably Sized */}
-                <p className="text-white font-serif text-[15px] md:text-xl lg:text-2xl tracking-[0.12em] border-b border-white/60 pb-3 md:pb-5 drop-shadow-lg whitespace-nowrap">
+            <div className="w-full max-w-5xl px-4 text-center pointer-events-auto flex flex-col items-center justify-center gap-8 md:gap-12 py-10 animate-focus-in">
+                {/* Sub Copy: Adjusted size for PC elegance */}
+                <p className="text-white font-serif text-[15px] md:text-lg lg:text-xl tracking-[0.12em] border-b border-white/60 pb-3 md:pb-5 drop-shadow-lg whitespace-nowrap">
                     飾られたPR動画は<span className="text-[1.3em] font-medium ml-1">もう誰も信じない</span>
                 </p>
 
-                {/* Main Copy: 2 Lines */}
+                {/* Main Copy: Tamed size for large screens (was lg:text-6xl/7xl -> now lg:text-5xl/6xl) */}
                 <h1 className="font-serif font-bold leading-normal drop-shadow-2xl">
-                    <span className="block text-white text-[26px] md:text-5xl lg:text-6xl tracking-widest mb-4 md:mb-8">
+                    <span className="block text-white text-[26px] md:text-4xl lg:text-5xl tracking-widest mb-4 md:mb-8">
                         信用されるのは
                     </span>
                     <span className="block whitespace-nowrap">
-                        <span className="text-persimmon font-hand text-[32px] md:text-6xl lg:text-7xl relative">
+                        <span className="text-persimmon font-hand text-[32px] md:text-5xl lg:text-6xl relative">
                             「リアルを映す動画」
                             {/* Adjusted underline position */}
                             <span className="absolute bottom-[3px] md:bottom-[6px] left-0 w-full h-[1.5px] md:h-[3px] bg-persimmon opacity-80"></span>
                         </span>
-                        <span className="text-white text-[26px] md:text-5xl lg:text-6xl ml-1 font-bold">です。</span>
+                        <span className="text-white text-[26px] md:text-4xl lg:text-5xl ml-1 font-bold">です。</span>
                     </span>
                 </h1>
             </div>
