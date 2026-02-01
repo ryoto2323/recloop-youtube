@@ -94,7 +94,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 bg-navy-900 border-b border-navy-800 py-4 md:py-5 shadow-lg transition-all duration-300"
+      className="fixed top-0 left-0 right-0 z-50 bg-navy-900 border-b border-navy-800 py-3 md:py-4 shadow-lg transition-all duration-300"
     >
       {/* Header Content */}
       <div className="relative z-[60] max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-full">
@@ -110,9 +110,9 @@ export const Navbar: React.FC = () => {
             className="cursor-pointer block transition-opacity hover:opacity-80"
           >
             <img 
-              src="/uragawalogo.svg" 
+              src="https://github.com/ryoto2323/recloop-youtube/blob/main/public/uragawa1.png?raw=true" 
               alt="URAGAWA 裏側1日密着ドキュメンタリー" 
-              className="h-[32px] md:h-[42px] w-auto object-contain p-0 m-0 brightness-0 invert"
+              className="h-[44px] md:h-[58px] w-auto object-contain p-0 m-0"
             />
           </a>
         </div>
