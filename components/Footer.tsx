@@ -6,9 +6,9 @@ export const Footer: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0 text-center md:text-left">
           <img 
-            src="/uragawalogo.svg" 
+            src="https://github.com/ryoto2323/recloop-youtube/blob/main/public/uragawa1.png?raw=true"
             alt="URAGAWA 裏側1日密着ドキュメンタリー" 
-            className="h-[32px] w-auto object-contain mx-auto md:mx-0 opacity-80 hover:opacity-100 transition-opacity brightness-0 invert"
+            className="h-[40px] md:h-[50px] w-auto object-contain mx-auto md:mx-0 opacity-80 hover:opacity-100 transition-opacity"
           />
         </div>
         <div className="text-sm tracking-wider">

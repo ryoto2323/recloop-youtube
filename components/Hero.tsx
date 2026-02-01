@@ -93,12 +93,11 @@ export const Hero: React.FC = () => {
               onTimeUpdate={handleTimeUpdate}
             />
             
-            {/* Brand Tint Overlay */}
-            <div className="absolute inset-0 bg-navy-900/60 pointer-events-none z-1 transition-opacity duration-500 group-hover:bg-navy-900/50"></div>
+            {/* Dark Overlay Adjustment for Text Contrast (0.7 Opacity) */}
+            <div className="absolute inset-0 bg-[#051224]/70 pointer-events-none z-1 transition-opacity duration-500 group-hover:bg-[#051224]/60"></div>
             
-            {/* Strong Vignette for Cinematic Immersion & Text Visibility */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,18,36,0.4)_50%,#051224_100%)] pointer-events-none z-10 mix-blend-multiply"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-navy-900/50 pointer-events-none z-10"></div>
+            {/* Vignette */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,18,36,0.6)_80%,#051224_100%)] pointer-events-none z-10 mix-blend-multiply"></div>
             
             {/* Grid Texture */}
             <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-2"></div>
@@ -110,7 +109,7 @@ export const Hero: React.FC = () => {
                     className="w-full h-1 bg-white/20 cursor-pointer relative group/seek"
                     onClick={handleSeek}
                 >
-                    <div className="absolute top-0 left-0 h-full bg-persimmon" style={{ width: `${progress}%` }}></div>
+                    <div className="absolute top-0 left-0 h-full bg-[#BF360C]" style={{ width: `${progress}%` }}></div>
                     <div className="absolute top-1/2 -translate-y-1/2 h-3 w-3 bg-white rounded-full opacity-0 group-hover/seek:opacity-100 transition-opacity" style={{ left: `${progress}%` }}></div>
                 </div>
                 
@@ -131,40 +130,50 @@ export const Hero: React.FC = () => {
             </div>
         </div>
 
-        {/* Content Container - Unified Horizontal Layout */}
-        <div className="relative z-20 w-full h-full p-6 pt-28 md:p-20 flex flex-col justify-center items-center text-white pointer-events-none">
+        {/* Content Container - Centered Text Layout */}
+        <div className="relative z-20 w-full h-full p-4 pt-28 md:p-20 flex flex-col justify-center items-center text-white pointer-events-none">
             
-            {/* Unified Horizontal Layout for All Devices */}
-            <div className="w-full max-w-5xl px-6 text-center pointer-events-auto flex flex-col items-center justify-center gap-8 md:gap-12 py-10 animate-focus-in">
-                {/* Sub Copy: Adjusted size for PC elegance */}
-                <p className="text-white font-serif text-[15px] md:text-lg lg:text-xl tracking-[0.12em] border-b border-white/60 pb-3 md:pb-5 drop-shadow-lg whitespace-nowrap">
-                    飾られたPR動画は<span className="text-[1.3em] font-medium ml-1">もう誰も信じない</span>
-                </p>
+            {/* Main Text Content */}
+            <div className="w-full max-w-5xl px-1 text-center pointer-events-auto flex flex-col items-center justify-center animate-focus-in">
+                
+                {/* 1. Lead Line - Size UP, Spacing Normal */}
+                <h2 className="font-serif mb-6 drop-shadow-lg whitespace-nowrap w-full px-1 tracking-normal flex justify-center items-baseline gap-1 md:gap-3">
+                    <span className="text-[#CCCCCC] font-normal text-[14px] md:text-[20px]">飾られたPR動画は</span>
+                    <span className="text-white font-bold text-[15px] md:text-[24px]">もう誰も信じない</span>
+                </h2>
 
-                {/* Main Copy: Tamed size for large screens (was lg:text-6xl/7xl -> now lg:text-5xl/6xl) */}
-                <h1 className="font-serif font-bold leading-normal drop-shadow-2xl">
-                    <span className="block text-white text-[26px] md:text-4xl lg:text-5xl tracking-widest mb-4 md:mb-8">
-                        信用されるのは
-                    </span>
-                    <span className="block whitespace-nowrap">
-                        <span className="text-persimmon font-hand text-[32px] md:text-5xl lg:text-6xl relative">
-                            「リアルを映す動画」
-                            {/* Adjusted underline position */}
-                            <span className="absolute bottom-[3px] md:bottom-[6px] left-0 w-full h-[1.5px] md:h-[3px] bg-persimmon opacity-80"></span>
+                {/* 2. Intro Line - Size UP */}
+                <h2 className="text-[#E0E0E0] text-[18px] md:text-[36px] tracking-wide font-serif font-bold mb-4 drop-shadow-lg leading-relaxed">
+                    信用されるのは
+                </h2>
+
+                {/* 3. Punchline with Architectural Line - Size UP */}
+                <div className="flex items-baseline justify-center flex-wrap gap-1 md:gap-3 mt-1">
+                    {/* Orange Part */}
+                    <span className="relative inline-block">
+                        <span className="text-[#BF360C] text-[30px] md:text-[72px] font-bold font-serif tracking-tight leading-tight">
+                            嘘のない動画
                         </span>
-                        <span className="text-white text-[26px] md:text-4xl lg:text-5xl ml-1 font-bold">です。</span>
+                        {/* Underline - Adjusted to -bottom-1 (approx 4px) to be closer to text */}
+                        <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#BF360C]"></span>
                     </span>
-                </h1>
+                    
+                    {/* White Part suffix */}
+                    <span className="text-white text-[16px] md:text-[36px] font-bold font-serif tracking-wide ml-1 md:ml-2">
+                         です。
+                    </span>
+                </div>
+                
             </div>
 
             {/* Sub copy & Tag */}
-            <div className="mt-12 md:mt-0 md:absolute md:bottom-24 md:left-12 max-w-md space-y-6 text-center md:text-left pointer-events-auto mix-blend-screen">
+            <div className="mt-16 md:mt-0 md:absolute md:bottom-24 md:left-12 max-w-md space-y-4 text-center md:text-left pointer-events-auto mix-blend-screen opacity-90">
                 <div className="flex items-center justify-center md:justify-start gap-3">
-                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-red-600 animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.8)]"></div>
+                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#BF360C] animate-pulse shadow-[0_0_10px_rgba(191,54,12,0.8)]"></div>
                     <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-white uppercase drop-shadow-md">Recording Real Life</span>
                 </div>
-                <p className="text-gray-100 text-base md:text-lg leading-loose font-medium tracking-wide drop-shadow-md">
-                    仕事の裏側に1日密着<br/>
+                <p className="text-gray-200 text-sm md:text-base leading-loose font-serif tracking-wide drop-shadow-md">
+                    仕事の裏側に1日密着。<br/>
                     採用・集客に繋がる会社紹介ドキュメンタリー
                 </p>
             </div>
