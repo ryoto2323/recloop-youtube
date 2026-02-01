@@ -8,11 +8,11 @@ export const Target: React.FC = () => {
         
         {/* Left: Heading */}
         <div className="w-full md:w-1/2">
-            <h2 className="text-3xl md:text-5xl font-serif font-bold leading-tight mb-8 break-keep">
+            <h2 className="text-2xl md:text-5xl font-serif font-bold leading-tight mb-8 break-keep">
             どんな業種でも<br/>
             <span className="inline-block mt-2">
-                <span className="text-persimmon font-medium italic text-4xl md:text-6xl">見たい裏側</span>
-                <span className="pl-3">があります。</span>
+                <span className="text-persimmon font-medium italic text-3xl md:text-6xl">見たい裏側</span>
+                <span className="pl-1 md:pl-3">があります。</span>
             </span>
             </h2>
             
@@ -31,10 +31,6 @@ export const Target: React.FC = () => {
         <div className="w-full md:w-1/2 relative">
            <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-800 hidden md:block"></div>
            <div className="md:pl-12 pt-4">
-               <p className="text-gray-400 font-serif text-base md:text-lg mb-8 leading-loose break-keep">
-                 現場のリアルには必ずドラマがあり<br />
-                 見たい裏側があります。
-               </p>
                
                {/* Handwritten "Truth" Statement */}
                <div className="relative inline-block text-center md:text-left">

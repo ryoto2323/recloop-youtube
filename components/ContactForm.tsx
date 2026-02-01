@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Section } from './Section';
 import { Button } from './Button';
-import { CheckCircle, X, Loader2, AlertCircle, Search, Video, PenTool, ChevronDown } from 'lucide-react';
+import { CheckCircle, X, Loader2, AlertCircle, Search, Video, PenTool, ChevronDown, Check } from 'lucide-react';
 
 // Input Component
 interface FormInputProps {
@@ -196,6 +197,7 @@ export const ContactForm: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isAddressLoading, setIsAddressLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isAgreed, setIsAgreed] = useState(false);
 
   const industryOptions = [
       "建設・建築",
@@ -286,6 +288,8 @@ export const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!isAgreed) return;
+
     // Validate all fields
     const newErrors: Record<string, string> = {};
     Object.keys(formData).forEach(key => {
@@ -303,15 +307,35 @@ export const ContactForm: React.FC = () => {
 
     setIsSubmitting(true);
     
-    // Simulate API Call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setShowModal(true);
-    setFormData({
-        company: '', industry: '', name: '', email: '', phone: '', zip: '', address: '', date1: '', date2: '', date3: '', message: ''
-    });
-    setTouched({});
+    try {
+        const response = await fetch("https://formspree.io/f/xnjvbbep", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(formData)
+        });
+
+        if (response.ok) {
+            setIsSubmitting(false);
+            setShowModal(true);
+            setFormData({
+                company: '', industry: '', name: '', email: '', phone: '', zip: '', address: '', date1: '', date2: '', date3: '', message: ''
+            });
+            setTouched({});
+            setIsAgreed(false);
+        } else {
+            const data = await response.json();
+            console.error("Form submission error:", data);
+            alert("送信に失敗しました。時間をおいて再度お試しください。");
+            setIsSubmitting(false);
+        }
+    } catch (error) {
+        console.error("Network error:", error);
+        alert("通信エラーが発生しました。インターネット接続を確認してください。");
+        setIsSubmitting(false);
+    }
   };
 
   return (
@@ -488,13 +512,66 @@ export const ContactForm: React.FC = () => {
                     isFocused={focusedField === 'message'}
                 />
             </div>
+
+            {/* Group 5: Privacy Policy */}
+            <div className="border-t border-gray-100 pt-8">
+                <label className="block text-sm font-bold text-navy-900 mb-4">
+                    個人情報の取り扱いについて <span className="text-red-500 text-xs">*</span>
+                </label>
+                
+                {/* Scrollable Policy Box */}
+                <div className="w-full h-48 overflow-y-scroll bg-gray-50 border border-gray-200 p-4 text-xs text-gray-600 leading-relaxed font-medium mb-4 shadow-inner">
+                    <p className="font-bold text-navy-900 mb-2">【プライバシーポリシー】</p>
+                    <p className="mb-2">
+                        当サイトは、お問い合わせいただいたお客様の個人情報を適切に保護し、以下の通り取り扱います。
+                    </p>
+                    <p className="font-bold text-navy-900 mt-3 mb-1">1. 利用目的</p>
+                    <p className="mb-2">
+                        ・お問い合わせへの回答および連絡のため<br/>
+                        ・サービスのご案内、資料送付のため
+                    </p>
+                    <p className="font-bold text-navy-900 mt-3 mb-1">2. 第三者への提供</p>
+                    <p className="mb-2">
+                        法令に基づく場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。
+                    </p>
+                    <p className="font-bold text-navy-900 mt-3 mb-1">3. 安全管理</p>
+                    <p className="mb-2">
+                        個人情報の漏洩、滅失、毀損等を防止するために適切な安全管理措置を講じます。
+                    </p>
+                    <p className="font-bold text-navy-900 mt-3 mb-1">4. お問い合わせ窓口</p>
+                    <p>
+                        個人情報の取り扱いに関するお問い合わせは、本フォームよりご連絡ください。
+                    </p>
+                </div>
+
+                {/* Checkbox */}
+                <div className="flex items-center justify-center">
+                    <label className="flex items-center gap-3 cursor-pointer group">
+                        <div className="relative">
+                            <input 
+                                type="checkbox" 
+                                className="peer sr-only" 
+                                checked={isAgreed}
+                                onChange={(e) => setIsAgreed(e.target.checked)}
+                            />
+                            <div className="w-6 h-6 border-2 border-gray-300 rounded bg-white peer-checked:bg-navy-900 peer-checked:border-navy-900 transition-all"></div>
+                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity">
+                                <Check size={16} strokeWidth={3} />
+                            </div>
+                        </div>
+                        <span className="text-sm md:text-base text-navy-900 font-bold group-hover:text-persimmon transition-colors select-none">
+                            個人情報の取り扱いに同意する
+                        </span>
+                    </label>
+                </div>
+            </div>
             
             <div className="pt-8 text-center">
                 <Button 
                     type="submit" 
                     variant="rec" 
-                    className="w-full md:w-1/2 py-5 text-lg shadow-xl"
-                    disabled={isSubmitting}
+                    className={`w-full md:w-1/2 py-5 text-lg shadow-xl ${!isAgreed ? 'opacity-50 grayscale cursor-not-allowed' : ''}`}
+                    disabled={isSubmitting || !isAgreed}
                 >
                     {isSubmitting ? (
                         <span className="flex items-center gap-2">
@@ -512,9 +589,9 @@ export const ContactForm: React.FC = () => {
         </form>
       </div>
 
-      {/* Success Modal */}
-      {showModal && (
-        <div className="fixed inset-0 z-[100] h-[100dvh] w-screen flex items-center justify-center p-4 bg-navy-900/80 backdrop-blur-sm animate-focus-in">
+      {/* Success Modal - Portal to Body for Fixed Positioning Context */}
+      {showModal && createPortal(
+        <div className="fixed inset-0 z-[10000] h-[100dvh] w-screen flex items-center justify-center p-4 bg-navy-900/80 backdrop-blur-sm animate-focus-in">
             <div className="bg-white p-8 md:p-12 max-w-lg w-full shadow-2xl relative text-center border-t-4 border-persimmon">
                 <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600">
                     <CheckCircle size={40} />
@@ -529,7 +606,8 @@ export const ContactForm: React.FC = () => {
                     閉じる
                 </Button>
             </div>
-        </div>
+        </div>,
+        document.body
       )}
     </Section>
   );

@@ -1,5 +1,40 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Section } from './Section';
+
+// Highlight Component for marker animation
+const Highlight: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            setIsVisible(true);
+          }, delay);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 } // Trigger when 50% visible
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <span ref={ref} className="relative inline-block mx-1">
+      <span 
+        className={`absolute bottom-[10%] left-0 h-[35%] w-full bg-yellow-200/50 -z-10 transition-transform duration-700 ease-out origin-left`}
+        style={{ transform: isVisible ? 'scaleX(1)' : 'scaleX(0)' }}
+      ></span>
+      <span className="relative z-10">{children}</span>
+    </span>
+  );
+};
 
 export const Problem: React.FC = () => {
   return (
@@ -43,17 +78,20 @@ export const Problem: React.FC = () => {
              </div>
           </div>
 
-          <div className="max-w-3xl mx-auto text-navy-900 text-sm md:text-lg text-center font-medium leading-loose tracking-wide break-keep">
-            <p className="mb-16 md:mb-24 opacity-90">
-              Webサイトが綺麗でも、パンフレットが立派でも、<br className="hidden md:block"/>
-              本当に知りたいのはそこじゃない。<br className="hidden md:block"/>
+          <div className="max-w-3xl mx-auto text-navy-900 font-medium leading-loose tracking-wide break-keep">
+            <p className="mb-16 md:mb-24 opacity-90 text-base md:text-xl md:leading-[2.5] leading-[2.2]">
+              Webサイトが綺麗でも、<br className="md:hidden" />
+              パンフレットが立派でも、<br className="md:hidden" />
+              <Highlight delay={100}>本当に知りたいのはそこじゃない。</Highlight><br className="hidden md:block"/>
+              
               <br className="block md:hidden" />
               <br className="block md:hidden" />
+              
               「どんな人が」「どんな想いで」<br />
               「どんな感じで働いているのか」<br />
-              この現場の手触りが見えない限り<br />
+              <Highlight delay={400}>この現場の手触りが見えない限り</Highlight><br />
               いまの求職者も、顧客も<br />
-              心は動きにくい時代です。
+              <Highlight delay={700}>心は動きにくい時代です。</Highlight>
             </p>
             
             <div className="bg-white p-8 md:p-14 shadow-xl border border-gray-100 relative overflow-hidden text-center transform rotate-1">

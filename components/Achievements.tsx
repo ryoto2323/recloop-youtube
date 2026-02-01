@@ -111,9 +111,9 @@ export const Achievements: React.FC = () => {
       {/* Header Section */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between border-b border-gray-700 pb-8 text-center md:text-left">
         <div>
-          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 tracking-wide leading-tight break-keep">
+          <h2 className="text-xl sm:text-2xl md:text-5xl font-serif font-bold mb-6 tracking-wide leading-tight break-keep">
             私たちは<br />
-            「見たくなる動画」を作るプロです。
+            <span className="text-persimmon">「見たくなる動画」</span>を作るプロです。
             <span className="text-lg md:text-xl text-gray-400 font-medium mt-4 block leading-relaxed">
                 ショート動画で800万回再生超え<br/>
                 その「構成力」を、企業の信用資産づくりへ。
@@ -183,11 +183,6 @@ export const Achievements: React.FC = () => {
 
       {/* Bridge Text */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 mt-24 text-center">
-         <p className="font-serif text-lg md:text-2xl text-white font-bold leading-relaxed mb-6 break-keep">
-            「視聴者が見たくなる動画作り」の<br />
-            ノウハウを企業の信用資産づくりへと<br />
-            転用します。
-         </p>
          <p className="text-gray-300 text-sm md:text-base leading-loose tracking-wide font-medium text-left md:text-center">
              激戦区のショート動画で数字を出してきた、「刺さる構成・見せ場設計・インタビュー設計」。<br className="hidden md:block"/>
              このノウハウを、今回の「1日密着の会社紹介ドキュメンタリー動画」に落とし込みます。<br className="hidden md:block"/>

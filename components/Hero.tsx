@@ -93,8 +93,12 @@ export const Hero: React.FC = () => {
               onTimeUpdate={handleTimeUpdate}
             />
             
-            {/* Brand Tint Overlay - Increased Opacity for Visibility */}
-            <div className="absolute inset-0 bg-navy-900/80 pointer-events-none z-1 transition-opacity duration-500 group-hover:bg-navy-900/70"></div>
+            {/* Brand Tint Overlay */}
+            <div className="absolute inset-0 bg-navy-900/60 pointer-events-none z-1 transition-opacity duration-500 group-hover:bg-navy-900/50"></div>
+            
+            {/* Strong Vignette for Cinematic Immersion & Text Visibility */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(5,18,36,0.4)_50%,#051224_100%)] pointer-events-none z-10 mix-blend-multiply"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-navy-900 via-transparent to-navy-900/50 pointer-events-none z-10"></div>
             
             {/* Grid Texture */}
             <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-2"></div>
@@ -128,7 +132,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Content Container - Unified Horizontal Layout */}
-        <div className="relative z-10 w-full h-full p-6 pt-28 md:p-20 flex flex-col justify-center items-center text-white pointer-events-none">
+        <div className="relative z-20 w-full h-full p-6 pt-28 md:p-20 flex flex-col justify-center items-center text-white pointer-events-none">
             
             {/* Unified Horizontal Layout for All Devices */}
             <div className="w-full max-w-5xl px-6 text-center pointer-events-auto flex flex-col items-center justify-center gap-8 md:gap-12 py-10 animate-focus-in">
