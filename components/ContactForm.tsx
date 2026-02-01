@@ -213,15 +213,19 @@ export const ContactForm: React.FC = () => {
 
   const validate = (name: string, value: string) => {
       let error = "";
+      // Email validation
       if (name === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
           error = "正しいメールアドレスを入力してください";
       }
+      // Phone validation
       if (name === "phone" && value && !/^[0-9-]{10,13}$/.test(value)) {
           error = "電話番号を正しく入力してください";
       }
+      // Zip validation
       if (name === "zip" && value && !/^\d{7}$/.test(value.replace(/-/g, ''))) {
           error = "郵便番号は7桁で入力してください";
       }
+      // Required fields check
       if (!value && ["company", "industry", "name", "email", "phone"].includes(name)) {
           error = "必須項目です";
       }
@@ -237,6 +241,7 @@ export const ContactForm: React.FC = () => {
         searchAddress(value);
     }
 
+    // Validate on change if already touched
     if (touched[name]) {
         setErrors(prev => ({ ...prev, [name]: validate(name, value) }));
     }
@@ -273,7 +278,7 @@ export const ContactForm: React.FC = () => {
           ...prev,
           address: fullAddress,
         }));
-        setErrors(prev => ({ ...prev, address: "" })); // Clear address error if any
+        setErrors(prev => ({ ...prev, address: "", zip: "" })); // Clear potential errors
       } else {
         setErrors(prev => ({ ...prev, zip: "住所が見つかりませんでした" }));
       }
@@ -288,6 +293,7 @@ export const ContactForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Agreement check
     if (!isAgreed) return;
 
     // Validate all fields
@@ -297,6 +303,7 @@ export const ContactForm: React.FC = () => {
         if (error) newErrors[key] = error;
     });
 
+    // If there are errors, scroll to the first one and stop
     if (Object.keys(newErrors).length > 0) {
         setErrors(newErrors);
         setTouched(Object.keys(formData).reduce((acc, key) => ({...acc, [key]: true}), {}));
@@ -318,20 +325,24 @@ export const ContactForm: React.FC = () => {
         });
 
         if (response.ok) {
+            // Success
             setIsSubmitting(false);
             setShowModal(true);
+            // Reset form
             setFormData({
                 company: '', industry: '', name: '', email: '', phone: '', zip: '', address: '', date1: '', date2: '', date3: '', message: ''
             });
             setTouched({});
             setIsAgreed(false);
         } else {
+            // Server error
             const data = await response.json();
             console.error("Form submission error:", data);
             alert("送信に失敗しました。時間をおいて再度お試しください。");
             setIsSubmitting(false);
         }
     } catch (error) {
+        // Network error
         console.error("Network error:", error);
         alert("通信エラーが発生しました。インターネット接続を確認してください。");
         setIsSubmitting(false);
