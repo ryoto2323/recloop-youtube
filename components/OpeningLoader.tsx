@@ -41,7 +41,7 @@ export const OpeningLoader: React.FC = () => {
          {/* Logo Animation */}
          <div className="mb-8 animate-focus-in">
              <img 
-               src="https://github.com/ryoto2323/recloop-youtube/blob/main/public/uragawa1.png?raw=true" 
+               src="/uragawa1.png" 
                alt="URAGAWA" 
                className="w-[220px] md:w-[280px] h-auto object-contain"
              />
